@@ -1,7 +1,7 @@
 # CRUD Node.js
 CRUD made with Node.js, Express, TypeScript, TypeORM, EJS &amp; SQLite.
 
-# JUAN MANUEL DE LOS SANTOS
+## JUAN MANUEL DE LOS SANTOS
 
 ## How to run:
 - Clone the repository.

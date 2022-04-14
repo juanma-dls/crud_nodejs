@@ -83,7 +83,9 @@
               <%= product.type %>
             </td>
             <td>
-              <%= product.categoryId %>
+              <% category.forEach(function(category){ %>
+                <%= category.name %>
+              <%})%>
             </td>
             <td>
               <%= product.created_at.toLocaleDateString() %>
