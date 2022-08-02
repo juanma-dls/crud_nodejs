@@ -20,7 +20,7 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #363636;">
     <div class="container">
-      <a class="navbar-brand" href="./"><img src="img/icon.png" alt="Node.js icon" class="nav-icon"></a>
+      <a class="navbar-brand" href="./home"><img src="img/icon.png" alt="Node.js icon" class="nav-icon"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -61,6 +61,17 @@
     <form action="./add-user" method="POST">
       <div class="row">
         <div class="col-6">
+          <label for="name" class="form-label">Nombre</label>
+          <input type="text" name="name" id="name" class="form-control">
+        </div>
+        <div class="col-6">
+          <label for="lastname" class="form-label">Apellido</label>
+          <input type="text" name="lastname" id="lastname" class="form-control">
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-6">
           <label for="username" class="form-label">Nombre de usuario</label>
           <input type="text" name="username" id="username" class="form-control">
         </div>
@@ -88,36 +99,11 @@
       <br>
       <div class="row">
         <div class="col-6">
-          <label for="city" class="form-label">Localidad</label>
-          <input type="text" name="city" id="city" class="form-control">
-        </div>
-        <div class="col-6">
-          <label for="state" class="form-label">Provincia</label>
-          <select name="state" id="state" class="form-select">
-            <option value="" selected disabled>Seleccione su Provincia</option>
-            <option value="BA">Buenos Aires</option>
-            <option value="CA">Catamarca</option>
-            <option value="CH">Chaco</option>
-            <option value="CT">Chubut</option>
-            <option value="CB">Córdoba</option>
-            <option value="CR">Corrientes</option>
-            <option value="ER">Entre Ríos</option>
-            <option value="FO">Formosa</option>
-            <option value="JY">Jujuy</option>
-            <option value="LP">La Pampa</option>
-            <option value="LR">La Rioja</option>
-            <option value="MZ">Mendoza</option>
-            <option value="MI">Misiones</option>
-            <option value="NQN">Neuquén</option>
-            <option value="RN">Río Negro</option>
-            <option value="SA">Sanlta</option>
-            <option value="SJ">San Juan</option>
-            <option value="SL">San Luis</option>
-            <option value="SC">Santa Cruz</option>
-            <option value="SF">Santa Fe</option>
-            <option value="SE">Santiago del Estero</option>
-            <option value="TF	">Tierra del Fuego</option>
-            <option value="TU">Tucumán</option>
+          <label for="rol" class="form-label">Rol del usuario</label>
+          <select name="rol" id="rol" class="form-select">
+            <option value="" selected disabled>Seleccione un rol</option>
+            <option value="Admin">Administrador</option>
+            <option value="default">Usuario default </option>
           </select>
         </div>
       </div>

@@ -1,8 +1,7 @@
 import { getCustomRepository } from "typeorm";
-
 import { Product } from "../entities/Product";
 import { ProductRepository } from "../repositories/ProductRepository"
-import { CategoryRepository } from "../repositories/CategoryRepository"
+import { Category } from "../entities/Category";
 
 interface IProduct {
   id?:number
@@ -10,35 +9,34 @@ interface IProduct {
   price: number,
   type: "varchar",
   categoryId: string
-}
+};
 
 class ProductService {
   async create({ productname, price, type, categoryId }: IProduct) {
     if (!productname || !price || !type || !categoryId ) {
       throw new Error("Por favor complete todos los campos");
-    }
+    };
 
     const productRepository = getCustomRepository(ProductRepository);
 
-    const nameAlreadyExists = await productRepository.findOne({ productname, price, type, categoryId });
+    const nameAlreadyExists = await productRepository.findOne({ productname});
 
     if (nameAlreadyExists) {
       throw new Error("El nombre del producto ingresado ya existe");
-    }
+    };
 
     const newProduct = new Product()
    
     newProduct.productname = productname
     newProduct.price = price
     newProduct.type = type
-    //@ts-ignore
     newProduct.categoryId = categoryId
 
     await productRepository.save(newProduct);
 
     return newProduct;
 
-  }
+  };
 
   async delete(id: string) {
     const productRepository = getCustomRepository(ProductRepository);
@@ -51,7 +49,7 @@ class ProductService {
       .execute();
 
     return product;
-  }
+  };
 
   async getData(id: string) {
     const productRepository = getCustomRepository(ProductRepository);
@@ -59,20 +57,20 @@ class ProductService {
     const product = await productRepository.findOne(id);
 
     return product;
-  }
+  };
 
   async list() {
     const productRepository = getCustomRepository(ProductRepository);
 
-    const product = await productRepository.find();
+    const product = await productRepository.find({relations:["category"]});   
 
     return product;
-  }
+  };
 
   async search(search: string) {
     if (!search) {
       throw new Error("Por favor complete el campo de búsqueda");
-    }
+    };
 
     const productRepository = getCustomRepository(ProductRepository);
 
@@ -86,7 +84,7 @@ class ProductService {
 
     return product;
 
-  }
+  };
 
   async update({ id, productname, price, type, categoryId }: IProduct) {
     const productRepository = getCustomRepository(ProductRepository);
@@ -100,7 +98,7 @@ class ProductService {
 
     return product;
 
-  }
+  };
 
 }
 export const productService = new ProductService()

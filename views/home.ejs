@@ -15,12 +15,15 @@
     href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  
 </head>
+
+
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #363636;">
     <div class="container">
-      <a class="navbar-brand" href="./"><img src="img/icon.png" alt="Node.js icon" class="nav-icon"></a>
+      <a class="navbar-brand" href="./home"><img src="img/icon.png" alt="Node.js icon" class="nav-icon"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -46,7 +49,13 @@
           </div>
         </ul>
         <form class="d-flex">
-          <button class="btn secondary-btn" type="submit">Session</button>
+          <a class="btn secondary-btn" href="./logout">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-door-closed" viewBox="0 0 16 16">
+              <path d="M3 2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2zm1 13h8V2H4v13z"/>
+              <path d="M9 9a1 1 0 1 0 2 0 1 1 0 0 0-2 0z"/>
+            </svg>
+            Salir
+          </a>
         </form>
       </div>
     </div>

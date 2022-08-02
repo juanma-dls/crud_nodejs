@@ -1,20 +1,21 @@
 import { Request, Response } from "express";
-import { UserService } from "../services/UserService";
+import UserService from "../services/UserService";
 
 class UserController {
   async create(request: Request, response: Response) {
-    const { username, password,email, phone, city, state } = request.body;
+    const { name, lastname, username, password,email, phone, rol } = request.body;
 
     const createUserService = new UserService();
 
     try {
       await createUserService.create({
+        name, 
+        lastname, 
         username,
         password,
         email,
         phone,
-        city,
-        state
+        rol
       }).then(() => {
         response.render("User/message", {
           message: "Usuario creado con éxito"
@@ -88,12 +89,12 @@ class UserController {
   }
 
   async update(request: Request, response: Response) {
-    const { id, username, password, email, phone, city, state } = request.body;
+    const { id, name, lastname, username, password, email, phone, rol } = request.body;
 
     const updateUserService = new UserService();
 
     try {
-      await updateUserService.update({ id, username, password, email, phone, city, state }).then(() => {
+      await updateUserService.update({ id, name, lastname, username, password, email, phone, rol }).then(() => {
         response.render("User/message", {
           message: "Usuario actualizado con éxito"
         });

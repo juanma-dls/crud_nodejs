@@ -1,5 +1,5 @@
 function counterProduct() {
-  let countdown = 5;
+  let countdown = 1;
 
   let timer = setInterval(function () {
     countdown--;
