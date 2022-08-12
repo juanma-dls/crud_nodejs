@@ -18,7 +18,7 @@ const app = express();
 
 // SESSION
 app.use(session({
-  secret: 'faztmysqlnodesession',
+  secret: 'juanmanueldelossantos',
   resave: false,
   saveUninitialized: false
 }));
