@@ -15,14 +15,12 @@ class ProductController {
         type,
         categoryId
       }).then(() => {
-        response.render("Product/message", {
-          message: "Producto creado con éxito"
-        });
+        request.flash("success","Producto creado exitosamente");
+          response.redirect("./products");
       });
     } catch (err) {
-      response.render("Product/message", {
-        message: `Error al crear producto: ${err.message}`
-      });
+      request.flash("error","Error al crear producto"), err;
+        response.redirect("./products");
     }
   }
 
@@ -38,14 +36,12 @@ class ProductController {
 
     try {
       await deleteUserService.delete(id).then(() => {
-        response.render("Product/message", {
-          message: "Producto eliminado con éxito"
-        });
+        request.flash("success","Producto eliminado exitosamente");
+          response.redirect("./products");
       });
     } catch (err) {
-      response.render("Product/message", {
-        message: `Error al eliminar producto: ${err.message}`
-      });
+      request.flash("error","Error al eliminar producto"), err;
+        response.redirect("./products");
     }
   }
 
@@ -86,14 +82,13 @@ class ProductController {
 
     try {
       const product = await searchProductService.search(search);
-      response.render("User/search", {
+      response.render("Product/search", {
         product: product,
         search: search
       });
     } catch (err) {
-      response.render("Product/message", {
-        message: `Error al buscar producto: ${err.message}`
-      });
+      request.flash("error","Error al buscar producto"), err;
+        response.redirect("./products");
     }
   }
 
@@ -104,14 +99,12 @@ class ProductController {
 
     try {
       await updateProductService.update({ id, productname, price, type, categoryId }).then(() => {
-        response.render("Product/message", {
-          message: "Producto actualizado con éxito"
-        });
+        request.flash("success","Producto actualizado exitosamente");
+          response.redirect("./products");
       });
     } catch (err) {
-      response.render("Product/message", {
-        message: `Error al actualizar producto: ${err.message}`
-      });
+      request.flash("error","Error al actualizar producto"), err;
+        response.redirect("./products");
     }
   }
 }

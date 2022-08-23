@@ -4,7 +4,6 @@ const LocalStrategy = passportLocal.Strategy;
 import UserService from "../services/UserService"
 import {helpers} from"./helpers"
 import {User} from "../entities/User"
-import flash from "connect-flash"
 
 
 //busqueda de usuario
@@ -23,7 +22,7 @@ passport.use('local.signin', new LocalStrategy({
         const user:User = busqueda[0];
         const validPassword = await helpers.matchPassword(password, user.password)
         if (validPassword) {
-            request.flash("success", "Bienvenido " , user.username)
+            request.flash("success", "Bienvenido " , user.name)
         done(null, user);
         } else {
             request.flash("error", "Contraseña incorrecta")

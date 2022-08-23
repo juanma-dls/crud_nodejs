@@ -51,17 +51,12 @@ body {
 
 .centered {
   position: absolute;
-  top: 37%;
+  top: 35%;
   left: 60%;
   bottom: 30%;
   transform: translate(-50%, -50%);
 }
 
-#message-div {
-  border: 2px solid lightgrey;
-  background-color: #f8f9fa;
-  padding: 30px;
-}
 
 .pass-btn {
   right: 0;

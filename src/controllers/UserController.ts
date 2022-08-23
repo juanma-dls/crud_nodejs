@@ -17,14 +17,12 @@ class UserController {
         phone,
         rol
       }).then(() => {
-        response.render("User/message", {
-          message: "Usuario creado con éxito"
-        });
+        request.flash("success","Usuario creado exitosamente");
+          response.redirect("./users");
       });
     } catch (err) {
-      response.render("User/message", {
-        message: `Error al crear usuario: ${err.message}`
-      });
+      request.flash("error","Error al crear usuario"), err;
+        response.redirect("./users");
     }
   }
   
@@ -35,14 +33,12 @@ class UserController {
 
     try {
       await deleteUserService.delete(id).then(() => {
-        response.render("User/message", {
-          message: "Usuario eliminado con éxito"
-        });
+        request.flash("success","Usuario eliminado exitosamente");
+          response.redirect("./users");
       });
     } catch (err) {
-      response.render("User/message", {
-        message: `Error al eliminar usuario: ${err.message}`
-      });
+      request.flash("error","Error al eliminar usuario"), err;
+        response.redirect("./users");
     }
   }
 
@@ -82,9 +78,8 @@ class UserController {
         search: search
       });
     } catch (err) {
-      response.render("User/message", {
-        message: `Error al buscar usuario: ${err.message}`
-      });
+      request.flash("error","Error al buscar usuario"), err;
+        response.redirect("./users");
     }
   }
 
@@ -95,14 +90,12 @@ class UserController {
 
     try {
       await updateUserService.update({ id, name, lastname, username, password, email, phone, rol }).then(() => {
-        response.render("User/message", {
-          message: "Usuario actualizado con éxito"
-        });
+        request.flash("success","Usuario actualizado exitosamente");
+        response.redirect("./users");
       });
     } catch (err) {
-      response.render("User/message", {
-        message: `Error al actualizar usuario: ${err.message}`
-      });
+      request.flash("error","Error al actualizar usuario"), err;
+        response.redirect("./users");
     }
   }
 }
