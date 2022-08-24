@@ -32,8 +32,8 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             </ul>
-            <form class="d-flex my-2" action="./search" method="GET">
-              <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="search">
+            <form class="d-flex my-2" action="./searchProduct" method="GET">
+              <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="search" autocomplete="off">
               <button class="btn secondary-btn" type="submit">Buscar</button>
             </form>
           </div>
@@ -55,22 +55,22 @@
               <div class="row">
                 <div class="col-6">
                   <label for="productname" class="form-label">Nombre del producto</label>
-                  <input type="text" name="productname" id="productname" class="form-control">
+                  <input type="text" name="productname" id="productname" class="form-control" autocomplete="off" required>
                 </div>
                 <div class="col-6">
                   <label for="price" class="form-label">Precio</label>
-                  <input type="text" name="price" id="price" class="form-control">
+                  <input type="text" name="price" id="price" class="form-control" autocomplete="off" required>
                 </div>
               </div>
               <br>
               <div class="row mb-3">
                 <div class="col-6">
                   <label for="type" class="form-label">Tipo</label>
-                  <input type="text" name="type" id="type" class="form-control">
+                  <input type="text" name="type" id="type" class="form-control" autocomplete="off" required>
                 </div>
                 <div class="col-6">
                   <label for="categoryId" class="form-label">Categoría</label>
-                  <select name="categoryId" id="categoryId" class="form-select">
+                  <select name="categoryId" id="categoryId" class="form-select" required>
                     <option value="" selected disabled>Seleccione Categoría</option>
                     <% category.forEach(function(category){ %>
                       <option value="<%= category.id %>">

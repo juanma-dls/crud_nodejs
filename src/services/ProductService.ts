@@ -76,7 +76,7 @@ class ProductService {
 
     const product = await productRepository
       .createQueryBuilder()
-      .where("name like :search", { search: `%${search}%` })
+      .where("productname like :search", { search: `%${search}%` })
       .orWhere("price like :search", { search: `%${search}%` })
       .orWhere("type like :search", { search: `%${search}%` })
       .orWhere("categoryId like :search", { search: `%${search}%` })

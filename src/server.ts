@@ -37,7 +37,6 @@ app.use((request, response, next) => {
 
   app.locals.success = request.flash("success")
   app.locals.error = request.flash("error")
-  app.locals.error = request.flash("warn")
   response.locals.login_user = User ;
   next()
 });

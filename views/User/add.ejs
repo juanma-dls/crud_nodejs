@@ -55,23 +55,23 @@
               <div class="row">
                 <div class="col-6">
                   <label for="name" class="form-label">Nombre</label>
-                  <input type="text" name="name" id="name" class="form-control">
+                  <input type="text" name="name" id="name" class="form-control" required autocomplete="off">
                 </div>
                 <div class="col-6">
                   <label for="lastname" class="form-label">Apellido</label>
-                  <input type="text" name="lastname" id="lastname" class="form-control">
+                  <input type="text" name="lastname" id="lastname" class="form-control" required autocomplete="off">
                 </div>
               </div>
               <br>
               <div class="row">
                 <div class="col-6">
                   <label for="username" class="form-label">Nombre de usuario</label>
-                  <input type="text" name="username" id="username" class="form-control">
+                  <input type="text" name="username" id="username" class="form-control" required autocomplete="off">
                 </div>
                 <div class="col-6">
                   <label for="password" class="form-label">Contraseña</label>
                   <div class="input-group">
-                    <input type="password" name="password" id="password" class="form-control">
+                    <input type="password" name="password" id="password" class="form-control" required autocomplete="off">
                     <div class="input-group-append">
                       <button class="btn pass-btn position-absolute" type="button" onclick="showPassword()"><i class="bi bi-eye"></i></button>
                     </div>
@@ -82,18 +82,18 @@
               <div class="row">
                 <div class="col-6">
                   <label for="email" class="form-label">Email</label>
-                  <input type="text" name="email" id="email" class="form-control">
+                  <input type="text" name="email" id="email" class="form-control" required autocomplete="off">
                 </div>
                 <div class="col-6">
                   <label for="phone" class="form-label">Telefono</label>
-                  <input type="text" name="phone" id="phone" class="form-control">
+                  <input type="text" name="phone" id="phone" class="form-control" required autocomplete="off">
                 </div>
               </div>
               <br>
               <div class="row mb-3">
                 <div class="col-6">
                   <label for="rol" class="form-label">Rol del usuario</label>
-                  <select name="rol" id="rol" class="form-select">
+                  <select name="rol" id="rol" class="form-select" required>
                     <option value="" selected disabled>Seleccione un rol</option>
                     <option value="Admin">Administrador</option>
                     <option value="default">Usuario default </option>

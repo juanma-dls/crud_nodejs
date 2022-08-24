@@ -32,8 +32,8 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             </ul>
-            <form class="d-flex my-2" action="./search" method="GET">
-              <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="search">
+            <form class="d-flex my-2" action="./searchProduct" method="GET">
+              <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="search" autocomplete="off">
               <button class="btn secondary-btn" type="submit">Buscar</button>
             </form>
           </div>
@@ -60,7 +60,7 @@
         <th scope="col">Acciones</th>
       </thead>
       <tbody>
-        <% products.forEach(function(product) { %>
+        <% product.forEach(function(product) { %>
           <tr>
             <td>
               <%= product.productname %>
