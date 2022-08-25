@@ -8,6 +8,12 @@ class User {
   id: string;
 
   @Column()
+  name: string;
+
+  @Column()
+  lastname: string;
+
+  @Column()
   username: string;
 
   @Column({nullable: false})
@@ -19,11 +25,8 @@ class User {
   @Column()
   phone: string;
 
-  @Column()
-  city: string;
-
-  @Column()
-  state: string;
+  @Column({nullable: false})
+  rol: string
 
   @CreateDateColumn()
   created_at: Date;

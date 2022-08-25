@@ -7,11 +7,8 @@ router.get("/home", (req, res)  => {
   res.render("home")
 });
 
-router.get("/singup", (req, res)  => {
-  res.render("Login/singup")
+router.get("/", (req, res)  => {
+  res.render("Login/signin")
 });
 
-router.get("/", (req, res)  => {
-  res.render("Login/singup")
-});
 export { router };

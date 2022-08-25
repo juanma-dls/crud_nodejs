@@ -11,14 +11,12 @@ class CategoryController {
       await createCategoryService.create({
         name
       }).then(() => {
-        response.render("Category/message", {
-          message: "Categoria creada con éxito"
-        });
+        request.flash("success","Categoría creada exitosamente");
+          response.redirect("./category");
       });
     } catch (err) {
-      response.render("Category/message", {
-        message: `Error al crear categoría: ${err.message}`
-      });
+      request.flash("error","Error al crear categoría", err);
+          response.redirect("./category");
     }
   }
   
@@ -29,14 +27,12 @@ class CategoryController {
 
     try {
       await deleteCategoryService.delete(id).then(() => {
-        response.render("Category/message", {
-          message: "Categoría eliminado con éxito"
-        });
+        request.flash("success","Categoría eliminada exitosamente");
+          response.redirect("./category");
       });
     } catch (err) {
-      response.render("Category/message", {
-        message: `Error al eliminar categoría: ${err.message}`
-      });
+      request.flash("error","Error al eliminar categoría", err);
+          response.redirect("./category");
     }
   }
 
@@ -76,9 +72,8 @@ class CategoryController {
         search: search
       });
     } catch (err) {
-      response.render("Category/message", {
-        message: `Error al buscar categoría: ${err.message}`
-      });
+      request.flash("error","Error al buscar categoría"), err;
+          response.redirect("./category");
     }
   }
 
@@ -89,14 +84,12 @@ class CategoryController {
 
     try {
       await updateCategoryrService.update({ id, name }).then(() => {
-        response.render("Category/message", {
-          message: "Categoría actualizado con éxito"
-        });
+        request.flash("success","Categoría actualizado exitosamente");
+          response.redirect("./category");
       });
     } catch (err) {
-      response.render("Category/message", {
-        message: `Error al actualizar categoría: ${err.message}`
-      });
+      request.flash("error","Error al actualizar categoría"), err;
+          response.redirect("./category");
     }
   }
 }

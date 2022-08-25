@@ -6,15 +6,49 @@ import { router } from "./routes/routes";
 import { routerUser } from "./routes/routerUser";
 import { routerProduct } from "./routes/routerProduct";
 import { routerCategory } from "./routes/routerCategory";
+import { routerLogin } from "./routes/routerLogin"
 import "./database";
+import session from "express-session";
+import passport from "passport";
+import morgan from "morgan";
+import flash from "connect-flash"
+import { User } from "./entities/User";
 
 const app = express();
+
+// SESSION
+app.use(session({
+  secret: 'juanmanueldelossantos',
+  resave: false,
+  saveUninitialized: false
+}));
+
+// MIDDLEWARES
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(router);
+app.use(morgan('dev')); 
+app.use(passport.initialize());
+app.use(passport.session());
+require("./lib/passport")
+app.use(flash())
+
+// GLOBAL VARIANT
+app.use((request, response, next) => {
+
+  app.locals.success = request.flash("success")
+  app.locals.error = request.flash("error")
+  response.locals.login_user = User ;
+  next()
+});
+
+// ROUTES
+app.use(router)
 app.use(routerUser);
 app.use(routerProduct);
 app.use(routerCategory);
+app.use(routerLogin)
+
+// SERVER
 
 app.use((err: Error, request: Request, response: Response, next: NextFunction) => {
   if (err instanceof Error) {
@@ -30,9 +64,9 @@ app.use((err: Error, request: Request, response: Response, next: NextFunction) =
 });
 
 app.use(express.static(path.join(__dirname, "..", "public")));
-app.set("view engine", "ejs");
+app.set('view engine', 'ejs');
 app.set("views", path.join(__dirname, "..", "views"));
 
-app.listen(3000, () => {
-  console.log("Server is running at port 3000");
+app.listen(8080, () => {
+  console.log("Server is running at port 8080");
 });
