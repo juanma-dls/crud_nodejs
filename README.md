@@ -1,5 +1,6 @@
 # CRUD Node.js
 CRUD made with Node.js, Express, TypeScript, TypeORM, EJS &amp; SQLite.
+Login made whith passport and session
 
 ## JUAN MANUEL DE LOS SANTOS
 

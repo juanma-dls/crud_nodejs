@@ -92,15 +92,15 @@
                 <%= user.updated_at.toLocaleTimeString() %>
             </td>
             <td>
-              <div class="row">
-                <div class="row">
+              <div class="row justify-content-evenly">
+                <!-- <div class="row">
                   <form action="./editUser" method="GET">
                     <input type="hidden" name="id" value="<%= user.id %>">
                     <button type="submit" class="btn edit-btn"><i class="bi bi-pencil"></i></button>
                   </form>
-                </div>
+                </div> -->
                 <div class="row">
-                  <form action="./delete-user" method="POST">
+                  <form action="./delete-user" method="POST" onclick="return confirm('¿Está seguro que desa eliminar este usuario?');">
                     <input type="hidden" name="id" value="<%= user.id %>">
                     <button type="submit" class="btn delete-btn"><i class="bi bi-trash"></i></button>
                   </form>
