@@ -1,5 +1,6 @@
 import { getCustomRepository } from "typeorm";
 import { User } from "../entities/User";
+import { helpers } from "../lib/helpers";
 import { UsersRepository } from "../repositories/UsersRepository";
 
 interface IUser {
@@ -33,14 +34,19 @@ class UserService {
       throw new Error("El email ingresado ya esta registrado");
     }
 
-    const user = usersRepository.create({ name, lastname, username, password, email, phone, rol});
+    const newUser = new User()
+   
+    newUser.name = name
+    newUser.lastname = lastname
+    newUser.username = username
+    newUser.password = await helpers.encryptPassword(password);
+    newUser.email = email
+    newUser.phone = phone
+    newUser.rol = rol
 
-    console.log(user)
+    await usersRepository.save(newUser);
 
-    await usersRepository.save(user);
-
-    return user;
-
+    return newUser;
   }
 
   async delete(id: string) {
