@@ -6,7 +6,8 @@ import {helpers} from"./helpers"
 import {User} from "../entities/User"
 
 
-//busqueda de usuario
+// Busqueda de usuario
+
 passport.use('local.signin', new LocalStrategy({
     usernameField: 'username',
     passwordField: 'password',
@@ -33,7 +34,8 @@ passport.use('local.signin', new LocalStrategy({
         return done(null, false);
     }
 }));
-// registro de Creacion de usuario
+
+// Creacion de usuario
 
 passport.use('local.signup', new LocalStrategy({
     usernameField: 'username',
@@ -53,7 +55,6 @@ passport.use('local.signup', new LocalStrategy({
 }
 
     newUser.password = await helpers.encryptPassword(password);
-
 
     const userService = new UserService()
     try {

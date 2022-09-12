@@ -3,7 +3,7 @@ import UserService from "../services/UserService";
 
 class UserController {
   async create(request: Request, response: Response) {
-    const { name, lastname, username, password,email, phone, rol } = request.body;
+    const { name, lastname, username, password,email, phone } = request.body;
 
     const createUserService = new UserService();
 
@@ -14,8 +14,7 @@ class UserController {
         username,
         password,
         email,
-        phone,
-        rol
+        phone
       }).then(() => {
         request.flash("success","Usuario creado exitosamente");
           response.redirect("./users");
@@ -84,12 +83,12 @@ class UserController {
   }
 
   async update(request: Request, response: Response) {
-    const { id, name, lastname, username, password, email, phone, rol } = request.body;
+    const { id, name, lastname, username, password, email, phone } = request.body;
 
     const updateUserService = new UserService();
 
     try {
-      await updateUserService.update({ id, name, lastname, username, password, email, phone, rol }).then(() => {
+      await updateUserService.update({ id, name, lastname, username, password, email, phone }).then(() => {
         request.flash("success","Usuario actualizado exitosamente");
         response.redirect("./users");
       });

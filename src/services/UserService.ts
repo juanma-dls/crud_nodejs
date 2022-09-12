@@ -10,13 +10,12 @@ interface IUser {
   username: string;
   password?: string;
   email: string;
-  phone: string;
-  rol:string;
+  phone: number;
 }
 
 class UserService {
-  async create({ name, lastname, username, password, email, phone, rol }: IUser) {
-    if (!name || !lastname || !username || !password || !email || !phone || !rol) {
+  async create({ name, lastname, username, password, email, phone }: IUser) {
+    if (!name || !lastname || !username || !password || !email || !phone ) {
       throw new Error("Por favor complete todos los campos");
     }
 
@@ -34,19 +33,11 @@ class UserService {
       throw new Error("El email ingresado ya esta registrado");
     }
 
-    const newUser = new User()
-   
-    newUser.name = name
-    newUser.lastname = lastname
-    newUser.username = username
-    newUser.password = await helpers.encryptPassword(password);
-    newUser.email = email
-    newUser.phone = phone
-    newUser.rol = rol
+    const user = usersRepository.create({ name, lastname, username, password, email, phone });
 
-    await usersRepository.save(newUser);
+    await usersRepository.save(user);
 
-    return newUser;
+    return user;
   }
 
   async delete(id: string) {
@@ -100,20 +91,26 @@ class UserService {
       .orWhere("lastname like :search", { search: `%${search}%` })
       .orWhere("email like :search", { search: `%${search}%` })
       .orWhere("phone like :search", { search: `%${search}%` })
-      .orWhere("rol like :search", { search: `%${search}%` })
       .getMany();
 
     return user;
 
   }
 
-  async update({ id, name, lastname, username, password,email, phone, rol }: IUser) {
+  async update({ id, name, lastname, username, password,email, phone }: IUser) {
     const usersRepository = getCustomRepository(UsersRepository);
 
     const user = await usersRepository
       .createQueryBuilder()
       .update(User)
-      .set({ name, lastname, username, password, email, phone, rol})
+      .set({ 
+        name, 
+        lastname, 
+        username, 
+        password: await helpers.encryptPassword(password), 
+        email, 
+        phone,
+        })
       .where("id = :id", { id })
       .execute();
 

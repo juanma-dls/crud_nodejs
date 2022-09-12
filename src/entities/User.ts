@@ -23,10 +23,7 @@ class User {
   email: string;
 
   @Column()
-  phone: string;
-
-  @Column({nullable: false})
-  rol: string
+  phone: number;
 
   @CreateDateColumn()
   created_at: Date;
