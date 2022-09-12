@@ -1,16 +1,18 @@
-import {User} from "../entities/User"
+class auth{
+    static isLoggedIn(request, response, next){
+        // Usamos un método de passport que devuelve un boolean si hay un usuario logeado
+        if (request.isAuthenticated()) {
+            return next();
+        }
+        return response.redirect('/');
+    };
 
-export class Authoricer{
-    static isLoggedIn (request, response, next): any {
-        if (request.isAuthenticated(User)) {
+    static isNotLoggedIn(request, response, next){
+        if (!request.isAuthenticated()) {
             return next();
         }
-        return response.redirect('/home');
-    }
-    static isNotLoggedIn (require, response, next): any{
-        if (!require.isAuthenticated()) {
-            return next();
-        }
-        return response.redirect('/signin');
-    }
-};
+        return response.redirect('/')
+    };
+}
+
+export default auth

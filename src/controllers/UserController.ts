@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { helpers } from "../lib/helpers";
 import UserService from "../services/UserService";
 
 class UserController {
@@ -12,7 +13,7 @@ class UserController {
         name, 
         lastname, 
         username,
-        password,
+        password: await helpers.encryptPassword(password),
         email,
         phone
       }).then(() => {
