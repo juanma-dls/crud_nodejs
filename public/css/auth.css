@@ -33,3 +33,14 @@ body {
 .pass-btn {
     right: 0;
   }
+
+.new-btn {
+  background-color: #ffffff;
+  border-color: #000000;
+  color: #000000;
+}
+
+.new-btn:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
