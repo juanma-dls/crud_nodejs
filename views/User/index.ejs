@@ -67,63 +67,65 @@
     <br>
     <br>
     <br>
-    <table class="table table-hover">
-      <thead>
-        <th scope="col">Nombre</th>
-        <th scope="col">Apellido</th>
-        <th scope="col">Nombre de usuario</th>
-        <th scope="col">Email</th>
-        <th scope="col">Telefono</th>
-        <th scope="col">Creación</th>
-        <th scope="col">Actualización</th>
-        <th scope="col">Acciones</th>
-      </thead>
-      <tbody>
-        <% users.forEach(function(user) { %>
-          <tr>
-            <td>
-              <%= user.name %>
-            </td>
-            <td>
-              <%= user.lastname %>
-            </td>
-            <td>
-              <%= user.username %>
-            </td>
-            <td>
-              <%= user.email %>
-            </td>
-            <td>
-              <%= user.phone %>
-            </td>
-            <td>
-              <%= user.created_at.toLocaleDateString() %>
-                <%= user.created_at.toLocaleTimeString() %>
-            </td>
-            <td>
-              <%= user.updated_at.toLocaleDateString() %>
-                <%= user.updated_at.toLocaleTimeString() %>
-            </td>
-            <td>
-              <div class="row justify-content-evenly">
-                <div class="row">
-                  <form action="./editUser" method="GET">
-                    <input type="hidden" name="id" value="<%= user.id %>">
-                    <button type="submit" class="btn edit-btn"><i class="bi bi-pencil"></i></button>
-                  </form>
+    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+      <table class="table table-hover">
+        <thead>
+          <th scope="col">Nombre</th>
+          <th scope="col">Apellido</th>
+          <th scope="col">Nombre de usuario</th>
+          <th scope="col">Email</th>
+          <th scope="col">Telefono</th>
+          <th scope="col">Creación</th>
+          <th scope="col">Actualización</th>
+          <th scope="col">Acciones</th>
+        </thead>
+        <tbody>
+          <% users.forEach(function(user) { %>
+            <tr>
+              <td>
+                <%= user.name %>
+              </td>
+              <td>
+                <%= user.lastname %>
+              </td>
+              <td>
+                <%= user.username %>
+              </td>
+              <td>
+                <%= user.email %>
+              </td>
+              <td>
+                <%= user.phone %>
+              </td>
+              <td>
+                <%= user.created_at.toLocaleDateString() %>
+                  <%= user.created_at.toLocaleTimeString() %>
+              </td>
+              <td>
+                <%= user.updated_at.toLocaleDateString() %>
+                  <%= user.updated_at.toLocaleTimeString() %>
+              </td>
+              <td>
+                <div class="row justify-content-evenly">
+                  <div class="row">
+                    <form action="./editUser" method="GET">
+                      <input type="hidden" name="id" value="<%= user.id %>">
+                      <button type="submit" class="btn edit-btn"><i class="bi bi-pencil"></i></button>
+                    </form>
+                  </div>
+                  <div class="row">
+                    <form action="./delete-user" method="POST" onclick="return confirm('¿Está seguro que desa eliminar este usuario?');">
+                      <input type="hidden" name="id" value="<%= user.id %>">
+                      <button type="submit" class="btn delete-btn"><i class="bi bi-trash"></i></button>
+                    </form>
+                  </div>
                 </div>
-                <div class="row">
-                  <form action="./delete-user" method="POST" onclick="return confirm('¿Está seguro que desa eliminar este usuario?');">
-                    <input type="hidden" name="id" value="<%= user.id %>">
-                    <button type="submit" class="btn delete-btn"><i class="bi bi-trash"></i></button>
-                  </form>
-                </div>
-              </div>
-            </td>
-          </tr>
+              </td>
+            </tr>
           <% }) %>
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    </div>
     <br>
     <br>
     <div class="float-start mt-5">

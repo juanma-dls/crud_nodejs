@@ -1,28 +1,28 @@
 import express from "express";
-import passport, { authorize } from "passport"
+import passport from "passport"
 import auth from "../lib/auth";
 
-const routerLogin = express.Router();
+const routerAuth = express.Router();
 // SIGNUP (registrarse)
-routerLogin.get('/signup', auth.isNotLoggedIn, (request, response) => {
+routerAuth.get('/signup', (request, response) => {
     response.render('Login/signup');
 });
-  
-routerLogin.post('/signup', auth.isNotLoggedIn, passport.authenticate('local.signup', {
-    successRedirect: "/signin",
+
+routerAuth.post('/signup', passport.authenticate('local.signup', {
+    successRedirect: "/home",
     failureRedirect: '/signup',
     failureFlash: true
 }));
 
-  
+
 // SINGIN (iniciar sesion)
-routerLogin.get('/signin', auth.isNotLoggedIn, (request, response) => {
+routerAuth.get('/signin', (request, response) => {
     response.render('Login/signin');
 });
-  
-routerLogin.post('/signin', auth.isNotLoggedIn, (request, response, next) => {
+
+routerAuth.post('/signin', (request, response, next) => {
     passport.authenticate('local.signin', {
-      successRedirect: "/",
+      successRedirect: "/home",
       failureRedirect: '/signin',
       failureFlash: true
     })(request, response, next);
@@ -30,12 +30,12 @@ routerLogin.post('/signin', auth.isNotLoggedIn, (request, response, next) => {
 
 
 //salir de la sesión
-routerLogin.get('/logout', (request, response, next) =>{
-    // @ts-ignore
-    request.logOut();
-    response.redirect('/')
+routerAuth.get('/logout', (request, response, next) =>{
 
-    });
-  
+    request.logout((err: any) => next());
+    response.redirect('/signin');
 
-export {routerLogin};
+  });
+
+
+export {routerAuth};

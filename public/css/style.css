@@ -28,24 +28,24 @@ body {
 }
 
 .primary-btn {
-  background-color: #6cc24a;
+  background-color: #35b4db;
   color: #fff;
 }
 
 .primary-btn:hover {
   background-color: transparent;
-  border-color: #6cc24a;
-  color: #6cc24a;
+  border-color: #35b4db;
+  color: #35b4db;
 }
 
 .secondary-btn {
   background-color: transparent;
-  border-color: #6cc24a;
-  color: #6cc24a;
+  border-color: #35b4db;
+  color: #35b4db;
 }
 
 .secondary-btn:hover {
-  background-color: #6cc24a;
+  background-color: #35b4db;
   color: #fff;
 }
 
@@ -113,4 +113,13 @@ main {
 .card {
   background-color: #f3f3f3;
 
+}
+
+.my-custom-scrollbar {
+position: relative;
+height: 500px;
+overflow: auto;
+}
+.table-wrapper-scroll-y {
+display: block;
 }

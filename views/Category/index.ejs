@@ -67,48 +67,50 @@
     <br>
     <br>
     <br>
-    <table class="table table-hover">
-      <thead>
-        <th scope="col">Nombre categoría</th>
-        <th scope="col">Creación</th>
-        <th scope="col">Actualización</th>
-        <th scope="col">Acciones</th>
-      </thead>
-      <tbody>
-        <% category.forEach(function(category) { %>
-          <tr>
-            <td>
-              <%= category.name %>
-            </td>
-            <td>
-              <%= category.created_at.toLocaleDateString() %>
-                <%= category.created_at.toLocaleTimeString() %>
-            </td>
-            <td>
-              <%= category.updated_at.toLocaleDateString() %>
-                <%= category.updated_at.toLocaleTimeString() %>
-            </td>
-            <td>
-              <div class="row">
+    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+      <table class="table table-hover">
+        <thead>
+          <th scope="col">Nombre categoría</th>
+          <th scope="col">Creación</th>
+          <th scope="col">Actualización</th>
+          <th scope="col">Acciones</th>
+        </thead>
+        <tbody>
+          <% category.forEach(function(category) { %>
+            <tr>
+              <td>
+                <%= category.name %>
+              </td>
+              <td>
+                <%= category.created_at.toLocaleDateString() %>
+                  <%= category.created_at.toLocaleTimeString() %>
+              </td>
+              <td>
+                <%= category.updated_at.toLocaleDateString() %>
+                  <%= category.updated_at.toLocaleTimeString() %>
+              </td>
+              <td>
                 <div class="row">
-                  <form action="./editCategory" method="GET">
-                    <input type="hidden" name="id" value="<%= category.id %>">
-                    <button type="submit" class="btn edit-btn"><i class="bi bi-pencil"></i></button>
-                  </form>
+                  <div class="row">
+                    <form action="./editCategory" method="GET">
+                      <input type="hidden" name="id" value="<%= category.id %>">
+                      <button type="submit" class="btn edit-btn"><i class="bi bi-pencil"></i></button>
+                    </form>
+                  </div>
+                  <div class="row"></div>
+                  <div class="row">
+                    <form action="./delete-category" method="POST" onclick="return confirm('¿Está seguro que desa eliminar esta categoría?');">
+                      <input type="hidden" name="id" value="<%= category.id %>">
+                      <button type="submit" class="btn delete-btn"><i class="bi bi-trash"></i></button>
+                    </form>
+                  </div>
                 </div>
-                <div class="row"></div>
-                <div class="row">
-                  <form action="./delete-category" method="POST" onclick="return confirm('¿Está seguro que desa eliminar esta categoría?');">
-                    <input type="hidden" name="id" value="<%= category.id %>">
-                    <button type="submit" class="btn delete-btn"><i class="bi bi-trash"></i></button>
-                  </form>
-                </div>
-              </div>
-            </td>
-          </tr>
-          <% }) %>
-      </tbody>
-    </table>
+              </td>
+            </tr>
+            <% }) %>
+        </tbody>
+      </table>
+    </div>
     <br>
     <br>
     <div class="float-start">

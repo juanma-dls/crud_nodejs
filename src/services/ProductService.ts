@@ -1,7 +1,6 @@
 import { getCustomRepository } from "typeorm";
 import { Product } from "../entities/Product";
 import { ProductRepository } from "../repositories/ProductRepository"
-import { Category } from "../entities/Category";
 
 interface IProduct {
   id?:number
