@@ -123,3 +123,8 @@ overflow: auto;
 .table-wrapper-scroll-y {
 display: block;
 }
+
+textarea {
+  height: 100px;
+    margin: 0;
+}
