@@ -6,7 +6,7 @@ interface IProduct {
   id?:number
   productname: string,
   price: number,
-  type: "varchar",
+  type: string,
   categoryId: string
 };
 

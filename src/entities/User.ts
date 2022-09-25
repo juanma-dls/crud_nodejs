@@ -1,5 +1,6 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryColumn, UpdateDateColumn } from "typeorm";
 import { v4 as uuid } from "uuid";
+import { Order } from "./Order";
 
 @Entity("users")
 class User {
@@ -24,6 +25,9 @@ class User {
 
   @Column()
   phone: number;
+
+  @OneToMany(() => Order, order => order.user)
+  orders: Order[];
 
   @CreateDateColumn()
   created_at: Date;

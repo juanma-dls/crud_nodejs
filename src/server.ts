@@ -7,8 +7,8 @@ import { routerUser } from "./routes/routerUser";
 import { routerProduct } from "./routes/routerProduct";
 import { routerCategory } from "./routes/routerCategory";
 import { routerAuth } from "./routes/routerLogin"
-import { routerMedic } from "./routes/routerMedic";
-import { routerPatient } from "./routes/routerPatient";
+import { routerApplicant } from "./routes/routerApplicant"; 
+import { routerOrder } from "./routes/routerOrder";
 import "./database";
 import session from "express-session";
 import passport from "passport";
@@ -50,8 +50,8 @@ app.use(routerUser);
 app.use(routerProduct);
 app.use(routerCategory);
 app.use(routerAuth);
-app.use(routerMedic);
-app.use(routerPatient);
+app.use(routerApplicant);
+app.use(routerOrder);
 
 
 // SERVER
