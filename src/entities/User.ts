@@ -26,9 +26,6 @@ class User {
   @Column()
   phone: number;
 
-  @OneToMany(() => Order, order => order.user)
-  orders: Order[];
-
   @CreateDateColumn()
   created_at: Date;
 
