@@ -82,8 +82,10 @@ class ProductController {
 
     try {
       const product = await searchProductService.search(search);
+      const category = await categoryService.list()
       response.render("Product/search", {
         product: product,
+        category: category,
         search: search
       });
     } catch (err) {

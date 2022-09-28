@@ -1,22 +1,19 @@
 import { Request, Response } from "express";
 import { applicantService } from "../services/ApplicantService";
 import OrderService from "../services/OrderService";
-import ProductService, { productService } from "../services/ProductService";
-import UserService, { userService } from "../services/UserService";
+import { productService } from "../services/ProductService";
 
 class OrderController {
   async create(request: Request, response: Response) {
-    const { numOrder, description, product_id, applicant_id, user_id } = request.body;
+    const { description, product_id, applicant_id } = request.body;
 
     const createOrderService = new OrderService();
 
     try {
       await createOrderService.create({
-        numOrder,
         description,
         product_id,
-        applicant_id,
-        user_id
+        applicant_id
       }).then(() => {
         request.flash("success","Pedido creado exitosamente");
           response.redirect("./orders");
@@ -31,8 +28,7 @@ class OrderController {
   async add(request: Request,response: Response){
     const product = await productService.list();
     const applicant = await applicantService.list()
-    const user = await userService.list()
-    return response.render("Order/add",{product, applicant, user})
+    return response.render("Order/add",{product, applicant})
   }
 
   async delete(request: Request, response: Response) {
@@ -57,16 +53,14 @@ class OrderController {
 
     const getOrderDataService = new OrderService();
 
-    const orders = await getOrderDataService.getData(id);
+    const order = await getOrderDataService.getData(id);
 
     const product = await productService.list()
     const applicant = await applicantService.list()
-    const user = await userService.list()
     return response.render("Order/edit", {
-      orders: orders,
+      order: order,
       product: product,
       applicant: applicant,
-      user: user
     });
   }
 
@@ -77,12 +71,10 @@ class OrderController {
   
     const product = await productService.list()
     const applicant = await applicantService.list()
-    const user = await userService.list()
     return response.render("Order/index", {
       order: order,
       product: product,
       applicant: applicant,
-      user: user
     });
   }
 
@@ -92,25 +84,30 @@ class OrderController {
 
     const searchOrderService = new OrderService();
 
+    const product = await productService.list()
+    const applicant = await applicantService.list()
     try {
       const order = await searchOrderService.search(search);
       response.render("Order/search", {
         order: order,
+        product: product,
+        applicant: applicant,
         search: search
       });
     } catch (err) {
       request.flash("error","Error al buscar pedido"), err;
+      console.error(err)
         response.redirect("./orders");
     }
   }
 
   async update(request: Request, response: Response) {
-    const { id, numOrder, description, product_id, applicant_id, user_id } = request.body;
+    const { id, numOrder, description, product_id, applicant_id } = request.body;
 
     const updateOrderService = new OrderService();
 
     try {
-      await updateOrderService.update({ id, numOrder, description, product_id, applicant_id, user_id }).then(() => {
+      await updateOrderService.update({ id, numOrder, description, product_id, applicant_id }).then(() => {
         request.flash("success","Pedido actualizada exitosamente");
           response.redirect("./orders");
       });

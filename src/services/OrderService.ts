@@ -6,34 +6,32 @@ import { OrderRepository } from "../repositories/OrderRepository";
 
 interface IOrder {
   id?:number
-  numOrder: string,
+  numOrder?: string,
   description: string,
   product_id: string,
   applicant_id: string
-  user_id: string,
 };
 
 class OrderService {
-  async create({ numOrder, description, product_id, applicant_id, user_id }: IOrder) {
-    if ( !numOrder || !description || !product_id || !applicant_id || !user_id ) {
+  async create({  description, product_id, applicant_id }: IOrder) {
+    if ( !description || !product_id || !applicant_id ) {
       throw new Error("Por favor complete todos los campos");
     };
 
     const orderRepository = getCustomRepository(OrderRepository);
 
-    const numOrderAlreadyExists = await orderRepository.findOne({ numOrder});
+    // const numOrderAlreadyExists = await orderRepository.findOne({ numOrder});
 
-    if (numOrderAlreadyExists) {
-      throw new Error("El numero de pedido ya existe");
-    };
+    // if (numOrderAlreadyExists) {
+    //   throw new Error("El numero de pedido ya existe");
+    // };
 
     const newOrder = new Order()
    
-    newOrder.numOrder = numOrder
+    // newOrder.numOrder = numOrder
     newOrder.description = description
     newOrder.product_id = product_id
     newOrder.applicant_id = applicant_id
-    newOrder.user_id = user_id
 
     await orderRepository.save(newOrder);
 
@@ -65,7 +63,7 @@ class OrderService {
   async list() {
     const orderRepository = getCustomRepository(OrderRepository);
 
-    const order = await orderRepository.find({relations:["user", "product", "applicant"]});   
+    const order = await orderRepository.find({relations:["product", "applicant"]});   
 
     return order;
   };
@@ -81,9 +79,8 @@ class OrderService {
       .createQueryBuilder()
       .where("numOrder like :search", { search: `%${search}%` })
       .orWhere("description like :search", { search: `%${search}%` })
-      .orWhere("product_id like :search", { search: `%${search}%` })
-      .orWhere("applicant_id like :search", { search: `%${search}%` })
-      .orWhere("user_id like :search", { search: `%${search}%` })
+      .orWhere("product.productname like :search", { search: `%${search}%` })
+      .orWhere("applicant.name like :search", { search: `%${search}%` })
       .getMany();
 
     return order;
@@ -96,7 +93,7 @@ class OrderService {
     const order = await orderRepository
       .createQueryBuilder()
       .update(Order)
-      .set({ numOrder, description, product_id, applicant_id })
+      .set({ description, product_id, applicant_id })
       .where("id = :id", { id })
       .execute();
 
