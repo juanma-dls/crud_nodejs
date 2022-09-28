@@ -71,17 +71,6 @@
             <form action="./add-order" method="POST">
               <div class="row">
                 <div class="col-6">
-                  <label for="numOrder" class="form-label">Numero de pedido</label>
-                  <input type="text" name="numOrder" id="numOrder" class="form-control" required autocomplete="off">
-                </div>
-                <div class="col-6">
-                  <label for="description" class="form-label">Descripcion</label>
-                  <textarea type="text" name="description" id="description" class="form-control" required autocomplete="off"></textarea>
-                </div>
-              </div>
-              <br>
-              <div class="row">
-                <div class="col-6">
                   <label for="product_id" class="form-label">Productos</label>
                   <select name="product_id" id="product_id" class="form-select" required>
                     <option value="" selected disabled>Seleccione productos</option>
@@ -104,18 +93,21 @@
                   </select>
                 </div>
               </div>
-              <br>
-              <div class="row">
-                <label for="user_id" class="form-label">Usuario</label>
-                  <select name="user_id" id="user_id" class="form-select" required>
-                    <option value="" selected disabled>Seleccione usuario</option>
-                    <% user.forEach(function(user){ %>
-                      <option value="<%= user.id %>">
-                        <%= user.name %>
-                      </option>
-                      <%})%>
-                  </select>
+              <div class="row mt-5">
+                <!-- <div class="col-6">
+                  <label for="numOrder" class="form-label">Numero de pedido</label>
+                  <input type="text" name="numOrder" id="numOrder" class="form-control" required disabled>
+                  <button class="mt-1 btn primary-btn">
+                    Generar nro de Pedido
+                  </button>
+                </div> -->
+                <div class="col-xl-8">
+                  <label for="description" class="form-label">Descripcion</label>
+                  <textarea type="text" name="description" id="description" class="form-control" required autocomplete="off"></textarea>
+                </div>
               </div>
+              <br>
+              
               <br>
               <div class="row ">
                 <div class="col-6">

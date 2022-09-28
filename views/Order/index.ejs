@@ -32,7 +32,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             </ul>
-            <form class="d-flex my-2 me-2" e-2" action="./searchProduct" method="GET">
+            <form class="d-flex my-2 me-2" e-2" action="./searchOrder" method="GET">
               <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="search" autocomplete="off">
               <button class="btn secondary-btn" type="submit">Buscar</button>
             </form>
@@ -69,29 +69,28 @@
     <br>
     <div class="table-wrapper-scroll-y my-custom-scrollbar">
       <table class="table table-hover">
-        <thead>
+        <thead class="text-center">
           <th scope="col">Numero de pedido</th>
           <th scope="col">Solicitante</th>
           <th scope="col">Descripcion</th>
-          <th scope="col">Usuario generador</th>
           <th scope="col">Creación</th>
           <th scope="col">Actualización</th>
           <th scope="col">Acciones</th>
         </thead>
-        <tbody>
+        <tbody class="text-center">
           <% order.forEach(function(order) { %>
             <tr>
               <td>
                 <%= order.numOrder %>
               </td>
               <td>
-                <%= order.applicant.name %>
+                <a href="./applicants">
+                  <%= order.applicant.name %>
+                  <%= order.applicant.lastname %>
+                </a>
               </td>
               <td>
                 <%= order.description %>
-              </td>
-              <td>
-                <%= order.user.name %> 
               </td>
               <td>
                 <%= order.created_at.toLocaleDateString() %>
@@ -101,15 +100,15 @@
                 <%= order.updated_at.toLocaleDateString() %>
                   <%= order.updated_at.toLocaleTimeString() %>
               </td>
-              <td>
+              <td class="d-flex justify-content-center">
                 <div class="row">
-                  <div class="row">
+                  <div class="col">
                     <form action="./editOrder" method="GET">
                       <input type="hidden" name="id" value="<%= order.id %>">
                       <button type="submit" class="btn edit-btn"><i class="bi bi-pencil"></i></button>
                     </form>
                   </div>
-                  <div class="row">
+                  <div class="col">
                     <form action="./delete-order" method="POST" onclick="return confirm('¿Está seguro que desa eliminar este pedido?');">
                       <input type="hidden" name="id" value="<%= order.id %>">
                       <button type="submit" class="btn delete-btn"><i class="bi bi-trash"></i></button>

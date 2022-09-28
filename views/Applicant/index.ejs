@@ -33,7 +33,7 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             </ul>
             <form class="d-flex my-2 me-2" action="./searchApplicant" method="GET">
-              <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="search">
+              <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="search" autocomplete="off">
               <button class="btn secondary-btn" type="submit">Buscar</button>
             </form>
             <div class="dropdown d-flex my-2">
@@ -69,7 +69,7 @@
     <br>
     <div class="table-wrapper-scroll-y my-custom-scrollbar">
       <table class="table table-hover">
-        <thead>
+        <thead class="text-center">
           <th scope="col">Nombre</th>
           <th scope="col">Apellido</th>
           <th scope="col">DNI</th>
@@ -79,7 +79,7 @@
           <th scope="col">Actualización</th>
           <th scope="col">Acciones</th>
         </thead>
-        <tbody>
+        <tbody class="text-center">
           <% applicants.forEach(function(applicant) { %>
             <tr>
               <td>
@@ -105,15 +105,15 @@
                 <%= applicant.updated_at.toLocaleDateString() %>
                   <%= applicant.updated_at.toLocaleTimeString() %>
               </td>
-              <td>
-                <div class="row justify-content-evenly">
-                  <div class="row">
+              <td class="d-flex justify-content-center">
+                <div class="row">
+                  <div class="col">
                     <form action="./editApplicant" method="GET">
                       <input type="hidden" name="id" value="<%= applicant.id %>">
                       <button type="submit" class="btn edit-btn"><i class="bi bi-pencil"></i></button>
                     </form>
                   </div>
-                  <div class="row">
+                  <div class="col">
                     <form action="./delete-applicant" method="POST" onclick="return confirm('¿Está seguro que desa eliminar este solicitante?');">
                       <input type="hidden" name="id" value="<%= applicant.id %>">
                       <button type="submit" class="btn delete-btn"><i class="bi bi-trash"></i></button>
@@ -128,7 +128,7 @@
     </div>
     <br>
     <br>
-    <div class="float-start mt-5">
+    <div class="float-start">
       <a href="./addApplicant" class="btn primary-btn">Agregar solicitante</a>
     </div>
   </div>

@@ -27,6 +27,10 @@ body {
   width: 40px;
 }
 
+.dropdown-item {
+  width: 50px;
+}
+
 .primary-btn {
   background-color: #35b4db;
   color: #fff;

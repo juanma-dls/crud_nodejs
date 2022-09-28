@@ -81,7 +81,7 @@
         <th scope="col">Nombre del producto</th>
         <th scope="col">Precio</th>
         <th scope="col">Tipo</th>
-        <th scope="col">ategoría</th>
+        <th scope="col">Categoría</th>
         <th scope="col">Creación</th>
         <th scope="col">Actualización</th>
         <th scope="col">Acciones</th>
@@ -99,7 +99,7 @@
               <%= product.type %>
             </td>
             <td>
-              <%= product.categoryId %>
+              <%= product.category.name %> 
             </td>
             <td>
               <%= product.created_at.toLocaleDateString() %>

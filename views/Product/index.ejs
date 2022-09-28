@@ -69,7 +69,7 @@
     <br>
     <div class="table-wrapper-scroll-y my-custom-scrollbar">
       <table class="table table-hover">
-        <thead>
+        <thead class="text-center">
           <th scope="col">Nombre del producto</th>
           <th scope="col">Precio</th>
           <th scope="col">Tipo</th>
@@ -78,14 +78,14 @@
           <th scope="col">Actualización</th>
           <th scope="col">Acciones</th>
         </thead>
-        <tbody>
+        <tbody class="text-center">
           <% product.forEach(function(product) { %>
             <tr>
               <td>
                 <%= product.productname %>
               </td>
               <td>
-                <%= product.price %>
+                $<%= product.price %>
               </td>
               <td>
                 <%= product.type %>
@@ -101,15 +101,15 @@
                 <%= product.updated_at.toLocaleDateString() %>
                   <%= product.updated_at.toLocaleTimeString() %>
               </td>
-              <td>
+              <td class="d-flex justify-content-center">
                 <div class="row">
-                  <div class="row">
+                  <div class="col">
                     <form action="./editProduct" method="GET">
                       <input type="hidden" name="id" value="<%= product.id %>">
                       <button type="submit" class="btn edit-btn"><i class="bi bi-pencil"></i></button>
                     </form>
                   </div>
-                  <div class="row">
+                  <div class="col">
                     <form action="./delete-product" method="POST" onclick="return confirm('¿Está seguro que desa eliminar este producto?');">
                       <input type="hidden" name="id" value="<%= product.id %>">
                       <button type="submit" class="btn delete-btn"><i class="bi bi-trash"></i></button>

@@ -77,7 +77,7 @@
     <br>
     <br>
     <table class="table table-hover">
-      <thead>
+      <thead class="text-center">
         <th scope="col">Nombre</th>
         <th scope="col">Apellido</th>
         <th scope="col">Nombre de usuario</th>
@@ -87,7 +87,7 @@
         <th scope="col">Actualización</th>
         <th scope="col">Acciones</th>
       </thead>
-      <tbody>
+      <tbody class="text-center">
         <% users.forEach(function(user) { %>
           <tr>
             <td>
@@ -113,15 +113,15 @@
               <%= user.updated_at.toLocaleDateString() %>
                 <%= user.updated_at.toLocaleTimeString() %>
             </td>
-            <td>
+            <td class="d-flex justify-content-center">
               <div class="row">
-                <div class="row">
+                <div class="col">
                   <form action="./editUser" method="GET">
                     <input type="hidden" name="id" value="<%= user.id %>">
                     <button type="submit" class="btn edit-btn"><i class="bi bi-pencil"></i></button>
                   </form>
                 </div>
-                <div class="row">
+                <div class="col">
                   <form action="./delete-user" method="POST" onclick="return confirm('¿Está seguro que desa eliminar este usuario?');">
                     <input type="hidden" name="id" value="<%= user.id %>">
                     <button type="submit" class="btn delete-btn"><i class="bi bi-trash"></i></button>
