@@ -1,13 +1,12 @@
 import { getCustomRepository } from "typeorm";
 import { Product } from "../entities/Product";
 import { ProductRepository } from "../repositories/ProductRepository"
-import { Category } from "../entities/Category";
 
 interface IProduct {
   id?:number
   productname: string,
   price: number,
-  type: "varchar",
+  type: string,
   categoryId: string
 };
 

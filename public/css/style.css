@@ -24,39 +24,33 @@ body {
 }
 
 .nav-icon {
-  width: 40px;
+  width: 65px;
+}
+
+.dropdown-item {
+  width: 50px;
 }
 
 .primary-btn {
-  background-color: #6cc24a;
+  background-color: #35b4db;
   color: #fff;
 }
 
 .primary-btn:hover {
   background-color: transparent;
-  border-color: #6cc24a;
-  color: #6cc24a;
+  border-color: #35b4db;
+  color: #35b4db;
 }
 
 .secondary-btn {
   background-color: transparent;
-  border-color: #6cc24a;
-  color: #6cc24a;
+  border-color: #35b4db;
+  color: #35b4db;
 }
 
 .secondary-btn:hover {
-  background-color: #6cc24a;
+  background-color: #35b4db;
   color: #fff;
-}
-
-.edit-btn {
-  background-color: yellow;
-  color: #000;
-}
-
-.delete-btn {
-  background-color: #f72828;
-  color: #000;
 }
 
 .center {
@@ -71,6 +65,7 @@ body {
   left: 60%;
   bottom: 30%;
   transform: translate(-50%, -50%);
+  z-index: 3;
 }
 
 
@@ -112,5 +107,23 @@ main {
 
 .card {
   background-color: #f3f3f3;
+}
 
+.my-custom-scrollbar {
+position: relative;
+height: 500px;
+overflow: auto;
+}
+.table-wrapper-scroll-y {
+display: block;
+}
+
+textarea {
+  height: 100px;
+    margin: 0;
+}
+
+.cardHome {
+  position: absolute;
+  z-index: 3;
 }

@@ -32,10 +32,10 @@ class ProductController {
   async delete(request: Request, response: Response) {
     const { id } = request.body;
 
-    const deleteUserService = new ProductService();
+    const deleteProductService = new ProductService();
 
     try {
-      await deleteUserService.delete(id).then(() => {
+      await deleteProductService.delete(id).then(() => {
         request.flash("success","Producto eliminado exitosamente");
           response.redirect("./products");
       });
@@ -82,8 +82,10 @@ class ProductController {
 
     try {
       const product = await searchProductService.search(search);
+      const category = await categoryService.list()
       response.render("Product/search", {
         product: product,
+        category: category,
         search: search
       });
     } catch (err) {

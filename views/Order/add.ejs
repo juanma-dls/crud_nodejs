@@ -19,7 +19,9 @@
 
 <body>
   <div class="d-flex">
+
     <%- include ('../Partials/sidebar') %>
+
     <div class="w-100">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
         <div class="container">
@@ -30,6 +32,10 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             </ul>
+            <form class="d-flex my-2 me-2" e-2" action="./searchProduct" method="GET">
+              <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="search" autocomplete="off">
+              <button class="btn secondary-btn" type="submit">Buscar</button>
+            </form>
             <div class="dropdown d-flex my-2">
               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 <%= user.name %>
@@ -52,35 +58,66 @@
       </nav>
     </div>
   </div>
-  <br>
-  <%- include ('../Partials/message') %>
   <div class="container centered">
-    <div class="card text-black my-5" style="border-radius: 25px;">
+    <%- include ('../Partials/message') %>
+    <div class="card text-black " style="border-radius: 25px;">
       <div class="card-body p-md-3">
         <div class="row justify-content-center">
-          <div class="col-md-10 col-xl-8 order-2 order-lg-1">
+          <div class="col-md-10 my-5 col-xl-8 order-2 order-lg-1">
             <div class="text-center">
-              <h2>Editar categoría</h2>
+              <h2>Crear pedido</h2>
             </div>
             <br>
-            <form action="./edit-category" method="POST">
-              <input type="hidden" name="id" value="<%= category.id %>">
+            <form action="./add-order" method="POST">
               <div class="row">
                 <div class="col-6">
-                  <label for="name" class="form-label">Nombre</label>
-                  <input type="text" name="name" id="name" class="form-control" value="<%= category.name%>" autocomplete="off" required>
+                  <label for="product_id" class="form-label">Productos</label>
+                  <select name="product_id" id="product_id" class="form-select" required>
+                    <option value="" selected disabled>Seleccione productos</option>
+                    <% product.forEach(function(product){ %>
+                      <option value="<%= product.id %>">
+                        <%= product.productname %>
+                      </option>
+                      <%})%>
+                  </select>
+                </div>
+                <div class="col-6">
+                  <label for="applicant_id" class="form-label">Solicitante</label>
+                  <select name="applicant_id" id="applicant_id" class="form-select" required>
+                    <option value="" selected disabled>Seleccione Solicitante</option>
+                    <% applicant.forEach(function(applicant){ %>
+                      <option value="<%= applicant.id %>">
+                        <%= applicant.name %>
+                      </option>
+                      <%})%>
+                  </select>
+                </div>
+              </div>
+              <div class="row mt-5">
+                <!-- <div class="col-6">
+                  <label for="numOrder" class="form-label">Numero de pedido</label>
+                  <input type="text" name="numOrder" id="numOrder" class="form-control" required disabled>
+                  <button class="mt-1 btn primary-btn">
+                    Generar nro de Pedido
+                  </button>
+                </div> -->
+                <div class="col-xl-8">
+                  <label for="description" class="form-label">Descripcion</label>
+                  <textarea type="text" name="description" id="description" class="form-control" required autocomplete="off"></textarea>
                 </div>
               </div>
               <br>
-              <div class="row">
+              
+              <br>
+              <div class="row ">
                 <div class="col-6">
                   <div class="float-start">
-                    <button type="submit" class="btn primary-btn">Editar categoría</button>
+                    <button type="submit" class="btn primary-btn">Crear pedido</button>
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="float-end">
-                    <a href="./category" class="btn secondary-btn">Vovler</a>
+                    <a href="./orders" class="btn secondary-btn">Volver</a>
                   </div>
                 </div>
               </div>

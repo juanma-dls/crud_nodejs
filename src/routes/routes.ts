@@ -4,12 +4,12 @@ import auth from "../lib/auth";
 
 const router = Router();
 
-router.get("/", (request, response)  => {
-  response.render("../views/home");
+router.get("/home", auth.isLoggedIn, (request, response)  => {
+  response.render("home");
 });
 
-router.get("/profile", auth.isLoggedIn, (request,response) => {
-  response.render("../views/profile")
+router.get("/", (request, response) => {
+  response.render("Login/signin")
 })
 
 

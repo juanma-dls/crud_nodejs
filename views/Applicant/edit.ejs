@@ -19,7 +19,9 @@
 
 <body>
   <div class="d-flex">
+
     <%- include ('../Partials/sidebar') %>
+
     <div class="w-100">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
         <div class="container">
@@ -29,7 +31,7 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            </ul>
+            </ul> 
             <div class="dropdown d-flex my-2">
               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 <%= user.name %>
@@ -52,35 +54,82 @@
       </nav>
     </div>
   </div>
-  <br>
-  <%- include ('../Partials/message') %>
   <div class="container centered">
-    <div class="card text-black my-5" style="border-radius: 25px;">
+    <%- include ('../Partials/message') %>
+    <div class="card text-black " style="border-radius: 25px;">
       <div class="card-body p-md-3">
         <div class="row justify-content-center">
-          <div class="col-md-10 col-xl-8 order-2 order-lg-1">
+          <div class="col-md-10 my-5 col-xl-8 order-2 order-lg-1">
             <div class="text-center">
-              <h2>Editar categoría</h2>
+              <h2>Editar solicitante</h2>
             </div>
             <br>
-            <form action="./edit-category" method="POST">
-              <input type="hidden" name="id" value="<%= category.id %>">
+            <form action="./edit-applicant" method="POST">
               <div class="row">
                 <div class="col-6">
                   <label for="name" class="form-label">Nombre</label>
-                  <input type="text" name="name" id="name" class="form-control" value="<%= category.name%>" autocomplete="off" required>
+                  <input type="text" name="name" id="name" class="form-control" required autocomplete="off" value="<%= applicant.name %>"">
+                </div>
+                <div class="col-6">
+                  <label for="lastname" class="form-label">Apellido</label>
+                  <input type="text" name="lastname" id="lastname" class="form-control" required autocomplete="off" value="<%= applicant.lastname %>">
                 </div>
               </div>
               <br>
               <div class="row">
                 <div class="col-6">
+                  <label for="dni" class="form-label">DNI</label>
+                  <input type="text" name="dni" id="dni" class="form-control" required autocomplete="off" value="<%= applicant.dni %>">
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-6">
+                  <label for="province" class="form-label">Provincia</label>
+                  <select name="province" id="province" class="form-select" required>
+                    <option value="<%= user.state %>" selected>
+                      <%= applicant.province %>
+                    </option>
+                    <option value="BA">Buenos Aires</option>
+                    <option value="CA">Catamarca</option>
+                    <option value="CH">Chaco</option>
+                    <option value="CT">Chubut</option>
+                    <option value="CB">Córdoba</option>
+                    <option value="CR">Corrientes</option>
+                    <option value="ER">Entre Ríos</option>
+                    <option value="FO">Formosa</option>
+                    <option value="JY">Jujuy</option>
+                    <option value="LP">La Pampa</option>
+                    <option value="LR">La Rioja</option>
+                    <option value="MZ">Mendoza</option>
+                    <option value="MI">Misiones</option>
+                    <option value="NQN">Neuquén</option>
+                    <option value="RN">Río Negro</option>
+                    <option value="SA">Sanlta</option>
+                    <option value="SJ">San Juan</option>
+                    <option value="SL">San Luis</option>
+                    <option value="SC">Santa Cruz</option>
+                    <option value="SF">Santa Fe</option>
+                    <option value="SE">Santiago del Estero</option>
+                    <option value="TF	">Tierra del Fuego</option>
+                    <option value="TU">Tucumán</option>
+                  </select>
+                </div>
+                <div class="col-6">
+                  <label for="city" class="form-label">Ciudad</label>
+                  <input type="text" name="city" id="city" class="form-control" required autocomplete="off" value="<%= applicant.city %>">
+                </div>
+              </div>
+              <br>
+              <div class="row ">
+                <div class="col-6">
                   <div class="float-start">
-                    <button type="submit" class="btn primary-btn">Editar categoría</button>
+                    <button type="submit" class="btn primary-btn">Crear solicitante</button>
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="float-end">
-                    <a href="./category" class="btn secondary-btn">Vovler</a>
+                    <a href="./applicants" class="btn secondary-btn">Volver</a>
                   </div>
                 </div>
               </div>
@@ -93,6 +142,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
     crossorigin="anonymous"></script>
+  <script src="js/showPass.js"></script>
 </body>
 
 </html>

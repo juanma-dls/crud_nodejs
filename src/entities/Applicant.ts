@@ -2,8 +2,8 @@ import { Column, CreateDateColumn, Entity, OneToMany, PrimaryColumn, UpdateDateC
 import { v4 as uuid } from "uuid";
 import { Order } from "./Order";
 
-@Entity("users")
-class User {
+@Entity('applicants')
+class Applicant {
 
   @PrimaryColumn()
   id: string;
@@ -15,16 +15,16 @@ class User {
   lastname: string;
 
   @Column()
-  username: string;
-
-  @Column({nullable: false})
-  password: string;
+  dni: string;
 
   @Column()
-  email: string;
+  province: string
 
   @Column()
-  phone: number;
+  city: string
+
+  @OneToMany(() => Order, order => order.applicant)
+  orders: Order[];
 
   @CreateDateColumn()
   created_at: Date;
@@ -37,7 +37,6 @@ class User {
       this.id = uuid();
     }
   }
-
 }
 
-export { User };
+export {Applicant}

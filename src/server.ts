@@ -6,7 +6,9 @@ import { router } from "./routes/routes";
 import { routerUser } from "./routes/routerUser";
 import { routerProduct } from "./routes/routerProduct";
 import { routerCategory } from "./routes/routerCategory";
-import { routerLogin } from "./routes/routerLogin"
+import { routerAuth } from "./routes/routerLogin"
+import { routerApplicant } from "./routes/routerApplicant"; 
+import { routerOrder } from "./routes/routerOrder";
 import "./database";
 import session from "express-session";
 import passport from "passport";
@@ -47,7 +49,10 @@ app.use(router)
 app.use(routerUser);
 app.use(routerProduct);
 app.use(routerCategory);
-app.use(routerLogin)
+app.use(routerAuth);
+app.use(routerApplicant);
+app.use(routerOrder);
+
 
 // SERVER
 

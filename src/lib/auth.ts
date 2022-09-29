@@ -1,18 +1,20 @@
-class auth{
+class auth {
+
     static isLoggedIn(request, response, next){
-        // Usamos un método de passport que devuelve un boolean si hay un usuario logeado
         if (request.isAuthenticated()) {
             return next();
         }
-        return response.redirect('/');
+        request.flash("error", "No autorizado, debe iniciar sesion")
+        return response.redirect('/signin');
     };
 
     static isNotLoggedIn(request, response, next){
         if (!request.isAuthenticated()) {
             return next();
         }
-        return response.redirect('/')
+        request.flash("error", "Sesion iniciada")
+        return response.redirect('/home')
     };
 }
 
-export default auth
+export default auth;

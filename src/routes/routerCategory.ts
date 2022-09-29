@@ -6,8 +6,8 @@ const routerCategory = Router();
 const categoryController = new CategoryController();
 
 routerCategory.get("/category", auth.isLoggedIn, categoryController.list);
-routerCategory.get("/addCategory", (req, res) => {
-  res.render("Category/add")
+routerCategory.get("/addCategory", auth.isLoggedIn, (request, response) => {
+  response.render("Category/add")
 });
 routerCategory.post("/add-category", auth.isLoggedIn, categoryController.create);
 routerCategory.get("/searchCategory", auth.isLoggedIn, categoryController.search);
