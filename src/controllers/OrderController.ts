@@ -84,20 +84,15 @@ class OrderController {
 
     const searchOrderService = new OrderService();
 
-    const product = await productService.list()
-    const applicant = await applicantService.list()
     try {
-      const order = await searchOrderService.search(search);
+      const order = await searchOrderService.search(search );
       response.render("Order/search", {
         order: order,
-        product: product,
-        applicant: applicant,
         search: search
       });
     } catch (err) {
       request.flash("error","Error al buscar pedido"), err;
-      console.error(err)
-        response.redirect("./orders");
+          response.redirect("./orders");
     }
   }
 

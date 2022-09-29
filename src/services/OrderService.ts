@@ -2,6 +2,7 @@ import { request } from "express";
 import { getCustomRepository } from "typeorm";
 import { Order } from "../entities/Order";
 import { OrderRepository } from "../repositories/OrderRepository";
+import { ProductRepository } from "../repositories/ProductRepository";
 
 
 interface IOrder {
@@ -79,8 +80,8 @@ class OrderService {
       .createQueryBuilder()
       .where("numOrder like :search", { search: `%${search}%` })
       .orWhere("description like :search", { search: `%${search}%` })
-      .orWhere("product.productname like :search", { search: `%${search}%` })
-      .orWhere("applicant.name like :search", { search: `%${search}%` })
+      .orWhere("product_id like :search", { search: `%${search}%` })
+      .orWhere("applicant_id like :search", { search: `%${search}%` })
       .getMany();
 
     return order;
