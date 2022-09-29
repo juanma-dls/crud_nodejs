@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CRUD Node.js</title>
-  <link rel="shortcut icon" href="img/icon.png" type="image/x-icon">
+  <link rel="shortcut icon" href="img/gamer-store.png" type="image/x-icon">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
@@ -76,52 +76,52 @@
     <br>
     <br>
     <br>
-    <table class="table table-hover">
-      <thead>
-        <th scope="col">Nombre del producto</th>
-        <th scope="col">Precio</th>
-        <th scope="col">Tipo</th>
-        <th scope="col">Categoría</th>
-        <th scope="col">Creación</th>
-        <th scope="col">Actualización</th>
-        <th scope="col">Acciones</th>
-      </thead>
-      <tbody>
-        <% product.forEach(function(product) { %>
-          <tr>
-            <td>
-              <%= product.productname %>
-            </td>
-            <td>
-              <%= product.price %>
-            </td>
-            <td>
-              <%= product.type %>
-            </td>
-            <td>
-              <%= product.category.name %> 
-            </td>
-            <td>
-              <%= product.created_at.toLocaleDateString() %>
-                <%= product.created_at.toLocaleTimeString() %>
-            </td>
-            <td>
-              <%= product.updated_at.toLocaleDateString() %>
-                <%= product.updated_at.toLocaleTimeString() %>
-            </td>
-            <td>
-              <div class="row">
-                <div class="row">
+    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+      <table class="table table-hover">
+        <thead class="text-center">
+          <th scope="col">Nombre del producto</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Tipo</th>
+          <th scope="col">Categoría</th>
+          <th scope="col">Creación</th>
+          <th scope="col">Actualización</th>
+          <th scope="col">Acciones</th>
+        </thead>
+        <tbody class="text-center">
+          <% product.forEach(function(product) { %>
+            <tr>
+              <td>
+                <%= product.productname %>
+              </td>
+              <td>
+                $<%= product.price %>
+              </td>
+              <td>
+                <%= product.type %>
+              </td>
+              <td>
+                <%= product.categoryId %> 
+              </td>
+              <td>
+                <%= product.created_at.toLocaleDateString() %>
+                  <%= product.created_at.toLocaleTimeString() %>
+              </td>
+              <td>
+                <%= product.updated_at.toLocaleDateString() %>
+                  <%= product.updated_at.toLocaleTimeString() %>
+              </td>
+            <td class="d-flex justify-content-evenly">
+              <div class="row my-2">
+                <div class="col-6">
                   <form action="./editProduct" method="GET">
                     <input type="hidden" name="id" value="<%= product.id %>">
-                    <button type="submit" class="btn edit-btn"><i class="bi bi-pencil"></i></button>
+                    <button type="submit" class="btn btn-outline-warning"><i class="bi bi-pencil"></i></button>
                   </form>
                 </div>
-                <div class="row"></div>
-                <div class="row">
+                <div class="col-6">
                   <form action="./delete-product" method="POST" onclick="return confirm('¿Está seguro que desa eliminar este producto?');">
                     <input type="hidden" name="id" value="<%= product.id %>">
-                    <button type="submit" class="btn delete-btn"><i class="bi bi-trash"></i></button>
+                    <button type="submit" class="btn btn-outline-danger"><i class="bi bi-trash"></i></button>
                   </form>
                 </div>
               </div>
