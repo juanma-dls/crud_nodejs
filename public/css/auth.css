@@ -35,12 +35,12 @@ body {
   }
 
 .new-btn {
-  background-color: #ffffff;
+  background-color: transparent;
   border-color: #000000;
   color: #000000;
 }
 
 .new-btn:hover {
-  background-color: #000000;
-  color: #ffffff;
+  background-color: #8f8fff;
+  color: #000000;
 }
