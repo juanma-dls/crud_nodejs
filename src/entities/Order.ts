@@ -1,8 +1,9 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn, UpdateDateColumn } from "typeorm";
-import { v4 as uuid } from "uuid";
+import { Column, CreateDateColumn, Entity, Generated, JoinColumn, ManyToOne, PrimaryColumn, Unique, UpdateDateColumn } from "typeorm";
+import { v1, v4 as uuid } from "uuid";
 import { Applicant } from "./Applicant";
 import { Product } from "./Product";
-import shortid from 'shortid'
+
+@Unique(["numOrder"])
 
 @Entity('orders')
 class Order {
@@ -10,16 +11,18 @@ class Order {
   @PrimaryColumn()
   id: string;
   
-  @Column({
-    type: String,
-    default: shortid.generate()
-  })
+  @Column()
   numOrder: string
 
   @Column({
     length: 200,
   })
   description: string;
+
+  @Column({
+    type: Date
+  })
+  dateOrder: Date
 
   @Column()
   product_id: string

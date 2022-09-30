@@ -2,41 +2,35 @@ import { request } from "express";
 import { getCustomRepository } from "typeorm";
 import { Order } from "../entities/Order";
 import { OrderRepository } from "../repositories/OrderRepository";
-import { ProductRepository } from "../repositories/ProductRepository";
-
 
 interface IOrder {
   id?:number
-  numOrder?: string,
+  numOrder: string,
   description: string,
+  dateOrder: Date,
   product_id: string,
   applicant_id: string
 };
 
 class OrderService {
-  async create({  description, product_id, applicant_id }: IOrder) {
-    if ( !description || !product_id || !applicant_id ) {
+  async create({ numOrder, description, dateOrder,product_id, applicant_id }: IOrder) {
+    if ( !numOrder || !description || !dateOrder || !product_id || !applicant_id ) {
       throw new Error("Por favor complete todos los campos");
     };
 
     const orderRepository = getCustomRepository(OrderRepository);
-
-    // const numOrderAlreadyExists = await orderRepository.findOne({ numOrder});
-
-    // if (numOrderAlreadyExists) {
-    //   throw new Error("El numero de pedido ya existe");
-    // };
-
-    const newOrder = new Order()
    
-    // newOrder.numOrder = numOrder
-    newOrder.description = description
-    newOrder.product_id = product_id
-    newOrder.applicant_id = applicant_id
+    const order = orderRepository.create({ 
+      numOrder,
+      description, 
+      dateOrder,
+      product_id, 
+      applicant_id 
+    })
 
-    await orderRepository.save(newOrder);
+    await orderRepository.save(order);
 
-    return newOrder;
+    return order;
 
   };
 
@@ -88,13 +82,13 @@ class OrderService {
 
   };
 
-  async update({ id, numOrder, description, product_id, applicant_id }: IOrder) {
+  async update({ id, numOrder, description, dateOrder, product_id, applicant_id }: IOrder) {
     const orderRepository = getCustomRepository(OrderRepository);
 
     const order = await orderRepository
       .createQueryBuilder()
       .update(Order)
-      .set({ description, product_id, applicant_id })
+      .set({ numOrder, description, dateOrder,product_id, applicant_id })
       .where("id = :id", { id })
       .execute();
 

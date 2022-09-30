@@ -1,21 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CRUD Node.js</title>
-  <link rel="shortcut icon" href="img/gamer-store.png" type="image/x-icon">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-</head>
+  <%- include ('../Partials/head') %>
 
 <body>
   <div class="d-flex">
@@ -34,7 +20,7 @@
             </ul>
             <form class="d-flex my-2 me-2" e-2" action="./searchOrder" method="GET">
               <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="search" autocomplete="off">
-              <button class="btn secondary-btn" type="submit">Buscar</button>
+              <button class="btn btn btn-outline-secondary" type="submit">Buscar</button>
             </form>
             <div class="dropdown d-flex my-2">
               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -63,7 +49,7 @@
     <%- include ('../Partials/message') %>
     <br>
     <div class="float-start mt-5">
-      <a href="./orders" class="btn primary-btn">
+      <a href="./orders" class="btn new-btn">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
           <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
         </svg>
@@ -79,7 +65,7 @@
     <br>
     <br>
     <div class="table-wrapper-scroll-y my-custom-scrollbar">
-      <table class="table table-hover">
+      <table class="table table-hover table-dark">
         <thead class="text-center">
           <th scope="col">Numero de pedido</th>
           <th scope="col">Solicitante</th>
