@@ -5,13 +5,15 @@ import { productService } from "../services/ProductService";
 
 class OrderController {
   async create(request: Request, response: Response) {
-    const { description, product_id, applicant_id } = request.body;
+    const { numOrder, description, dateOrder, product_id, applicant_id } = request.body;
 
     const createOrderService = new OrderService();
 
     try {
       await createOrderService.create({
+        numOrder,
         description,
+        dateOrder,
         product_id,
         applicant_id
       }).then(() => {
@@ -97,12 +99,19 @@ class OrderController {
   }
 
   async update(request: Request, response: Response) {
-    const { id, numOrder, description, product_id, applicant_id } = request.body;
+    const { id, numOrder, description, dateOrder, product_id, applicant_id } = request.body;
 
     const updateOrderService = new OrderService();
 
     try {
-      await updateOrderService.update({ id, numOrder, description, product_id, applicant_id }).then(() => {
+      await updateOrderService.update({ 
+        id, 
+        numOrder, 
+        description,
+        dateOrder, 
+        product_id, 
+        applicant_id 
+      }).then(() => {
         request.flash("success","Pedido actualizada exitosamente");
           response.redirect("./orders");
       });

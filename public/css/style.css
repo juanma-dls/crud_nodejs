@@ -21,6 +21,8 @@ body {
   overflow: hidden;
   min-height: 100vw!important;
   min-height: -webkit-fill-available;
+  background: rgb(252,252,252);
+  background: linear-gradient(0deg, rgba(252,252,252,1) 0%, rgba(190,190,255,1) 45%, rgba(163,163,255,1) 100%, rgba(143,143,255,0) 100%);
 }
 
 .nav-icon {
@@ -32,27 +34,37 @@ body {
 }
 
 .primary-btn {
-  background-color: #35b4db;
+  background-color: #8f8fff;
   color: #fff;
 }
 
 .primary-btn:hover {
   background-color: transparent;
-  border-color: #35b4db;
-  color: #35b4db;
+  border-color: #8f8fff;
+  color: #8f8fff;
 }
 
 .secondary-btn {
   background-color: transparent;
-  border-color: #35b4db;
-  color: #35b4db;
+  border-color: #868686;
+  color: #868686;
 }
 
 .secondary-btn:hover {
-  background-color: #35b4db;
+  background-color: #868686;
   color: #fff;
 }
 
+.new-btn {
+  background-color: transparent;
+  border-color: #000000;
+  color: #000000;
+}
+
+.new-btn:hover {
+  background-color: #8f8fff;
+  color: #000000;
+}
 .center {
   display: flex;
   justify-content: center;
@@ -106,7 +118,7 @@ main {
 }
 
 .card {
-  background-color: #f3f3f3;
+  background-color: #ffffffe7;
 }
 
 .my-custom-scrollbar {
@@ -127,3 +139,19 @@ textarea {
   position: absolute;
   z-index: 3;
 }
+
+.container-sponsor {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100% !important;
+  height: 95px !important;
+  background: rgb(252,252,252);
+  }
+
+  .sponsor {
+    width: 30%;
+  }
+
+  .title {
+    font-family: 'Orbitron', sans-serif;
+  }
