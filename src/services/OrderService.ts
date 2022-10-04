@@ -7,14 +7,15 @@ interface IOrder {
   id?:number
   numOrder: string,
   description: string,
+  deliveryAddres
   dateOrder: Date,
   product_id: string,
   applicant_id: string
 };
 
 class OrderService {
-  async create({ numOrder, description, dateOrder,product_id, applicant_id }: IOrder) {
-    if ( !numOrder || !description || !dateOrder || !product_id || !applicant_id ) {
+  async create({ numOrder, description, deliveryAddres, dateOrder,product_id, applicant_id }: IOrder) {
+    if ( !numOrder || !description || !description || !dateOrder || !product_id || !applicant_id ) {
       throw new Error("Por favor complete todos los campos");
     };
 
@@ -22,13 +23,15 @@ class OrderService {
    
     const order = orderRepository.create({ 
       numOrder,
-      description, 
+      description,
+      deliveryAddres, 
       dateOrder,
       product_id, 
       applicant_id 
     })
 
     await orderRepository.save(order);
+    console.log(order)
 
     return order;
 
@@ -74,6 +77,7 @@ class OrderService {
       .createQueryBuilder()
       .where("numOrder like :search", { search: `%${search}%` })
       .orWhere("description like :search", { search: `%${search}%` })
+      .orWhere("deliveryAddres like :search", { search: `%${search}%` })
       .orWhere("product_id like :search", { search: `%${search}%` })
       .orWhere("applicant_id like :search", { search: `%${search}%` })
       .getMany();
@@ -82,13 +86,13 @@ class OrderService {
 
   };
 
-  async update({ id, numOrder, description, dateOrder, product_id, applicant_id }: IOrder) {
+  async update({ id, numOrder, description, deliveryAddres,  product_id, applicant_id }: IOrder) {
     const orderRepository = getCustomRepository(OrderRepository);
 
     const order = await orderRepository
       .createQueryBuilder()
       .update(Order)
-      .set({ numOrder, description, dateOrder,product_id, applicant_id })
+      .set({ numOrder, description, deliveryAddres, product_id, applicant_id })
       .where("id = :id", { id })
       .execute();
 

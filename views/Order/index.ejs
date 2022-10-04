@@ -60,6 +60,7 @@
           <th scope="col">Solicitante</th>
           <th scope="col">Producto</th>
           <th scope="col">Descripcion</th>
+          <th scope="col">Direccion de envio</th>
           <th scope="col">Fecha de pedido</th>
           <th scope="col">Creación</th>
           <th scope="col">Actualización</th>
@@ -80,6 +81,9 @@
               </td>
               <td>
                 <%= order.description %>
+              </td>
+              <td>
+                <%= order.deliveryAddres %>
               </td>
               <td>
                 <%= order.dateOrder.toLocaleDateString() %>

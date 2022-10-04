@@ -5,7 +5,7 @@ import { productService } from "../services/ProductService";
 
 class OrderController {
   async create(request: Request, response: Response) {
-    const { numOrder, description, dateOrder, product_id, applicant_id } = request.body;
+    const { numOrder, description, deliveryAddres,dateOrder, product_id, applicant_id } = request.body;
 
     const createOrderService = new OrderService();
 
@@ -13,6 +13,7 @@ class OrderController {
       await createOrderService.create({
         numOrder,
         description,
+        deliveryAddres,
         dateOrder,
         product_id,
         applicant_id
@@ -21,7 +22,7 @@ class OrderController {
           response.redirect("./orders");
       });
     } catch (err) {
-      request.flash("error","Error al crear pedido", err);
+      request.flash("error","Error al crear pedido ", err);
       console.log(request.body)
         response.redirect("./orders");
     }
@@ -99,7 +100,7 @@ class OrderController {
   }
 
   async update(request: Request, response: Response) {
-    const { id, numOrder, description, dateOrder, product_id, applicant_id } = request.body;
+    const { id, numOrder, description, deliveryAddres, dateOrder, product_id, applicant_id } = request.body;
 
     const updateOrderService = new OrderService();
 
@@ -108,6 +109,7 @@ class OrderController {
         id, 
         numOrder, 
         description,
+        deliveryAddres,
         dateOrder, 
         product_id, 
         applicant_id 
@@ -116,7 +118,7 @@ class OrderController {
           response.redirect("./orders");
       });
     } catch (err) {
-      request.flash("error","Error al actualizar pedido"), err;
+      request.flash("error","Error al actualizar pedido", err);
         response.redirect("./orders");
     }
   }

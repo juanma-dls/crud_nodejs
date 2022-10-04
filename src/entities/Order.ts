@@ -1,5 +1,5 @@
-import { Column, CreateDateColumn, Entity, Generated, JoinColumn, ManyToOne, PrimaryColumn, Unique, UpdateDateColumn } from "typeorm";
-import { v1, v4 as uuid } from "uuid";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn, Unique, UpdateDateColumn } from "typeorm";
+import { v4 as uuid } from "uuid";
 import { Applicant } from "./Applicant";
 import { Product } from "./Product";
 
@@ -18,6 +18,11 @@ class Order {
     length: 200,
   })
   description: string;
+
+  @Column({
+    nullable: false
+  })
+  deliveryAddres: string;
 
   @Column({
     type: Date

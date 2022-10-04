@@ -54,16 +54,20 @@
             <form action="./edit-order" method="POST">
               <input type="hidden" name="id" value="<%= order.id %>">
               <div class="row">
-                <div class="col-xl-8">
+                <div class="col-6">
                   <label for="numOrder" class="form-label">Numero de pedido</label>
-                  <input type="text" name="numOrder" id="numOrder" class="form-control" required disabled value="<%= order.numOrder %>">
+                  <input type="text" name="numOrder" id="numOrder" class="form-control" required value="<%= order.numOrder %>">
                 </div>
               </div>
               <div class="row">
                 <div class="col-xl-8">
                   <label for="description" class="form-label">Descripcion</label>
-                  <input type="text" name="description" id="description" class="form-control" required autocomplete="off" value="<%= order.description %>" style="height: 200px;"/> 
+                  <input type="text" name="description" id="description" class="form-control" required autocomplete="off" value="<%= order.description %>" style="height: 70px;"/> 
                 </div>
+              </div>
+              <div class="col-xl-8">
+                <label for="deliveryAddres" class="form-label">Direccion de envio</label>
+                <input type="text" name="deliveryAddres" id="deliveryAddres" class="form-control" required autocomplete="off" value="<%= order.deliveryAddres %>" style="height: 70px;"/> 
               </div>
               <br>
               <div class="row">
@@ -92,7 +96,7 @@
               <div class="row">
                 <div class="col-6">
                   <div class="float-start">
-                    <button type="submit" class="btn new-btn">Editar usuario</button>
+                    <button type="submit" class="btn new-btn">Editar pedido</button>
                   </div>
                 </div>
                 <div class="col-6">
